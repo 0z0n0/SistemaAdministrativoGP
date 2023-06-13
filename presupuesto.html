@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sistema Administrativo GP</title>
+    <script
+      defer
+      src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"
+    ></script>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+  <!-- cdn icon bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="presupuesto_style.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="Logo_GP.ico">
+  </head>
+  <body>
+    <div class="container-fluid ">
+      <div class="row">
+        <div class="col-md">
+          <header class="py-3">
+            <nav class="navbar navbar-expand-lg ">
+              <div class="container-fluid">
+                <a class="navbar-brand title text-white " href="index.php">
+                  <img class="imgnav rotate-hor-bottom" src="Logo_GP.svg" alt="">
+                  </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                  <ul class="navbar-nav">
+                    <li class="nav-item">
+                      <a class="nav-link text-white" aria-current="page" href='notapedido/notapedido.php'>Nota Pedido</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link text-white" href="ordencorte/ordencorte.php">Orden Corte</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link text-white"  href="presupuesto.html">Presupuesto</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </nav>
+          </header>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="container" id="presupuesto">
+      <!-- Campos adicionales para la información del presupuesto -->
+      <div class="presupuesto-info">
+        <!-- <h2>GPTIPOLOGO</h2> -->
+        <img src="banner.png" alt="" style="width: 100%;">
+        <h1>Presupuesto</h1>
+        <label for="empresaCliente">Empresa:</label>
+        <input type="text" id="empresaCliente" name="empresaCliente">
+  
+        <label for="fecha">Fecha:</label>
+        <input type="date" id="fecha" name="fecha">
+      </div>
+  
+      <h2>Tabla de productos</h2>
+      <table id="productTable">
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Precio</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input type="text" name="producto[]"></td>
+            <td><input type="number" name="cantidad[]" oninput="calculateTotal(this)"></td>
+            <td><input type="number" name="precio[]" oninput="calculateTotal(this)"></td>
+            <td><input type="number" name="total[]" readonly></td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="add-row-button" onclick="addRow()">Agregar fila</button>
+      <!-- Botón para guardar como PDF utilizando la función saveAsPDF -->
+      <button class="save-pdf-button" onclick="saveAsPDF()">Guardar como PDF</button>
+  
+      <p class="total">Total: <span id="total">0</span></p>
+    </div>
+    <script src="script.js"></script>
+  </body>
+  </html>
+</html>
